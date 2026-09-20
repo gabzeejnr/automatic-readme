@@ -1,7 +1,11 @@
 import * as cheerio from "cheerio";
 import type { Website } from "./types/website.types.js";
+import { chromium } from "playwright"
 
 export async function scrapeWebsite(url: string) {
+
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
 
     console.log('Starting...');
 
@@ -10,13 +14,13 @@ export async function scrapeWebsite(url: string) {
     if (url.startsWith("http://") || url.startsWith("https://")) parsedUrl = url;
     else parsedUrl = "https://" + url;
 
-    console.log(parsedUrl);
+    await page.goto(parsedUrl);
 
-    const res = await fetch(parsedUrl);
-
-    const html = await res.text();
+    const html = await page.content()
 
     const $ = cheerio.load(html);
+
+    await browser.close();
 
     const website: Website = {
 

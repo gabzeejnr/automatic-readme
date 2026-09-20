@@ -1,8 +1,125 @@
 {
     "url": "https://dreelacademy.vercel.app",
-    "title": "Dreel-Academy - Cloud Engineering Academy",
+    "title": "Dreel Academy - Cloud Engineering Academy",
     "description": "The training academy for Dreel company.",
-    "headings": [],
-    "links": [],
-    "images": []
+    "headings": [
+        "Our Partners",
+        "Our Programs",
+        "Cloud Native Engineering",
+        "DevOps Engineering",
+        "Linux Systems Engineering",
+        "Platform Engineering",
+        "ENTERPRISE SERVICES",
+        "Cloud & DevOps Expertise",
+        "Kubernetes Deployment",
+        "Cloud Migration",
+        "DevOps Transformation",
+        "Observability & Monitoring",
+        "SCHOLARSHIP PROGRAM",
+        "NYSC Members",
+        "300-Level Students",
+        "Career Guarantee",
+        "Industry Certification",
+        "₦2.5M+",
+        "850+",
+        "92%",
+        "Study Groups",
+        "Live Sessions",
+        "Global Community",
+        "Discussion Forums",
+        "Peer Support",
+        "Project Collaboration",
+        "COMMUNITY",
+        "Dreel Cloud Native Community",
+        "HIRING PIPELINE",
+        "Hire Dreel Engineers"
+    ],
+    "links": [
+        "/home",
+        "/",
+        "https://wa.me/2347037706544",
+        "mailto: hello@academy.dreel.ng",
+        "tel:+234 (703) 770-6544",
+        "https://x.com/dreelacademy",
+        "https://instagram.com/dreelacademy",
+        "https://youtube.com/@dreelacademy"
+    ],
+    "images": [
+        {
+            "src": "/assets/dreel-academy-logo-B86o5Fge.png",
+            "alt": "Dreel Academy"
+        },
+        {
+            "src": "/assets/dreel-academy-logo-B86o5Fge.png",
+            "alt": ""
+        },
+        {
+            "src": "/assets/hero-image-DrE4nHqD.png",
+            "alt": "Hero Secondary Image"
+        },
+        {
+            "src": "/assets/Microsoft-logo-DJ4xm_4q.png",
+            "alt": "Microsoft"
+        },
+        {
+            "src": "/assets/suse_logo-D3GGwZbI.jpg",
+            "alt": "SUSE"
+        },
+        {
+            "src": "/assets/udemy-logo-RV_pHW_L.png",
+            "alt": "Udemy"
+        },
+        {
+            "src": "/assets/technofocus-CdbOrGnW.png",
+            "alt": "TechnoFocus"
+        },
+        {
+            "src": "data:image/jpeg;base64,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",
+            "alt": "LevelUp"
+        },
+        {
+            "src": "/assets/Microsoft-logo-DJ4xm_4q.png",
+            "alt": "Microsoft"
+        },
+        {
+            "src": "/assets/suse_logo-D3GGwZbI.jpg",
+            "alt": "SUSE"
+        },
+        {
+            "src": "/assets/udemy-logo-RV_pHW_L.png",
+            "alt": "Udemy"
+        },
+        {
+            "src": "/assets/technofocus-CdbOrGnW.png",
+            "alt": "TechnoFocus"
+        },
+        {
+            "src": "data:image/jpeg;base64,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",
+            "alt": "LevelUp"
+        },
+        {
+            "src": "/assets/Cloud-Native-Icon-CSf-SSH5.png",
+            "alt": "Cloud Native Engineering icon"
+        },
+        {
+            "src": "/assets/DevOps-Engineering-icon-CFJo6mrA.png",
+            "alt": "DevOps Engineering icon"
+        },
+        {
+            "src": "/assets/Linux-Administration-Engineering-bXvvFpSt.png",
+            "alt": "Linux Systems Engineering icon"
+        },
+        {
+            "src": "/assets/Platform-Engineering-Icon-HipU9evV.png",
+            "alt": "Platform Engineering icon"
+        },
+        {
+            "src": "/assets/Dreel-community-image-DjHb1ctZ.png",
+            "alt": "DReel Community"
+        },
+        {
+            "src": "/assets/dreel-academy-logo-B86o5Fge.png",
+            "alt": "Dreel Academy"
+        }
+    ]
 }
