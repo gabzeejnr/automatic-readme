@@ -1,7 +1,7 @@
 import type { ReadmeData } from "./types/readme.types.js";
 
 export function generateReadMe(data: ReadmeData) {
-    let markdown = `# ${data.name}
+    let markdown = `# ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}
 
 
 ${data.description || ""}

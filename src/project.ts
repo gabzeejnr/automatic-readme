@@ -7,6 +7,10 @@ import { getReactRoutes } from "./analyzers/react.analyzer.js";
 
 export function folderFileSort(array: Dirent[], folderArray: string[], fileArray: string[]) {
 
+    /* 
+    *This function checks the file & folder array and sorts them into files and folders
+    */
+
     array.forEach(arr => {
         if (ignoredFF.includes(arr.name)) return;
 
@@ -17,7 +21,10 @@ export function folderFileSort(array: Dirent[], folderArray: string[], fileArray
         }
     })
 
-    return { folderArray, fileArray }
+    return {
+        folderArray,
+        fileArray
+    }
 }
 
 export type Routes = {

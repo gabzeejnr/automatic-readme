@@ -6,7 +6,10 @@
         "Tailwind CSS"
     ],
     "routes": [
-        ""
+        "/",
+        "/home",
+        "/dcnsp",
+        "/suse-partnership"
     ],
     "apiRoutes": [
         ""

@@ -1,4 +1,4 @@
-# dreel-academy
+# Dreel-academy
 
 
 
@@ -17,7 +17,10 @@ undefined
 
 ## 📍 Routes
 
-- ``
+- `/`
+- `/home`
+- `/dcnsp`
+- `/suse-partnership`
 
 
 ## 🔌 API Routes
