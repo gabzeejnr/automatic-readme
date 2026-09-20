@@ -1,0 +1,33 @@
+{
+    "name": "Hexashop",
+    "description": "A modern fashion website",
+    "url": "https://hexashop-self-omega.vercel.app",
+    "framework": "Next.js",
+    "techStack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "SCSS",
+        "Express",
+        "PostgreSQL Driver"
+    ],
+    "routes": [
+        "/",
+        "/about",
+        "/products",
+        "/products/category/[category]",
+        "/products/product/[slug]"
+    ],
+    "apiRoutes": [
+        "/api/[...path]",
+        "/api/pets",
+        "/api/products",
+        "/api/products/product/[slug]"
+    ],
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint"
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "url": "https://hexashop-self-omega.vercel.app",
+    "title": "HexaShop - Your fashion needs met",
+    "description": "A modern fashion website",
+    "headings": [
+        "We are HexaShop"
+    ],
+    "links": [
+        "/",
+        "/about",
+        "/products",
+        "/contact",
+        "/explore",
+        "mailto:hexashop@company.com",
+        "tel:+010-020-0340",
+        "/help",
+        "/faq",
+        "https://gabrieldodowei.vercel.app"
+    ],
+    "images": [
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fwhite-logo.0p42b0xamj503.png&w=640&q=75",
+            "alt": "HexaShop"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fleft-hero-banner.2179rgxj4ds16.jpg&w=1920&q=75",
+            "alt": "Main hero image"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fwomens-bg.32d5pv3vfolsv.jpg&w=3840&q=75",
+            "alt": "Women"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fmens-bg.39hq-aeiw813p.jpg&w=3840&q=75",
+            "alt": "Men"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fkids-bg.1b7w7v4fujmur.jpg&w=3840&q=75",
+            "alt": "Kids"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Faccessries-bg.0sfvwg168p637.jpg&w=3840&q=75",
+            "alt": "Accessories"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fwomens-bg.32d5pv3vfolsv.jpg&w=828&q=75",
+            "alt": "slides"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fmens-bg.39hq-aeiw813p.jpg&w=828&q=75",
+            "alt": "slides"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fkids-bg.1b7w7v4fujmur.jpg&w=828&q=75",
+            "alt": "slides"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fwomens-bg.32d5pv3vfolsv.jpg&w=828&q=75",
+            "alt": "Slide Show content"
+        },
+        {
+            "src": "/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fwhite-logo.0p42b0xamj503.png&w=640&q=75",
+            "alt": "HexaShop"
+        }
+    ]
+}
