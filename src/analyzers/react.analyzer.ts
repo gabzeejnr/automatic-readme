@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "node:path";
-import { folderFileSort } from "../project.js";
+import { folderFileSort } from "../helpers/project.helpers.js";
 import { pageExtensions, ignoredFF, routeLocations } from "../arrays/project.arrays.js";
-import type { Routes } from "../project.js";
+import type { Routes } from "../types/project.types.js";
 
 export async function getReactRoutes(
     srcPath: string
@@ -12,17 +12,16 @@ export async function getReactRoutes(
 
     const folders: string[] = [];
     const files: string[] = [];
-
     folderFileSort(docs, folders, files);
 
     const routeFolder = folders.find(folder => routeLocations.includes(folder));
     if (!routeFolder) throw new Error("No route folder found");
 
     const folderPath = path.join(srcPath, routeFolder);
-
     const content = await fs.readdir(folderPath, { withFileTypes: true });
 
     const routes: string[] = [];
+    let parentRoute: string = "";
 
     for (const con of content) {
         if (
@@ -32,15 +31,29 @@ export async function getReactRoutes(
         ) {
             const routeContent = await fs.readFile(path.join(folderPath, con.name), "utf-8");
 
-            const routesTags = [...routeContent.matchAll(/path=["']([^"']+)["']/g)].map(match => match[1])
-            if (!routesTags.length) throw new Error("Routes not found...");
+            const routeLines = routeContent.split("\n")
+                .filter(line =>
+                    line.includes("<Route")
+                    && !line.includes("<Routes")
+                );
 
-            for (const route of routesTags) {
-                if (!route) throw new Error("Route not defined");
+            for (const line of routeLines) {
 
-                const thisRoute = route.startsWith("/") ? route : `/${route}`;
+                const isParent = !line.trim().endsWith("/>");
+                const pathMatch = line.match(/path=["']([^"']+)["']/);
+                const route = pathMatch?.[1];
 
-                routes.push(thisRoute);
+                if (!route) continue;
+
+                if (isParent) {
+                    parentRoute = route;
+                    routes.push(route)
+                } else if (parentRoute) {
+                    const thisRoute = `${parentRoute}/${route}`.replace(/\/+/g, "/");
+                    routes.push(thisRoute);
+                } else {
+                    routes.push(route.startsWith("/") ? route : `/${route}`)
+                }
             }
         }
     }

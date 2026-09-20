@@ -1,36 +1,10 @@
 import fs from "fs/promises";
 import path from "path";
-import { possibleStacks, ignoredFF } from "./arrays/project.arrays.js";
-import { getNextRoutes } from "./analyzers/Nextjs.analyzer.js";
-import type { Dirent } from "fs";
+import { possibleStacks } from "./arrays/project.arrays.js";
+import { getNextRoutes } from "./analyzers/nextjs.analyzer.js";
 import { getReactRoutes } from "./analyzers/react.analyzer.js";
-
-export function folderFileSort(array: Dirent[], folderArray: string[], fileArray: string[]) {
-
-    /* 
-    *This function checks the file & folder array and sorts them into files and folders
-    */
-
-    array.forEach(arr => {
-        if (ignoredFF.includes(arr.name)) return;
-
-        if (arr.isDirectory()) {
-            folderArray.push(arr.name);
-        } else {
-            fileArray.push(arr.name);
-        }
-    })
-
-    return {
-        folderArray,
-        fileArray
-    }
-}
-
-export type Routes = {
-    routes: string[],
-    apiRoutes: string[]
-}
+import { folderFileSort } from "./helpers/project.helpers.js";
+import type { Routes } from "./types/project.types.js";
 
 async function projectStructure(projectPath: string) {
     const docs = await fs.readdir(projectPath, { withFileTypes: true });
@@ -79,7 +53,6 @@ export async function getProjectInfo(projectPath: string) {
     } = await projectStructure(projectPath);
 
     const packageFile = await fs.readFile(packagePath, "utf-8");
-
     const packageJson = JSON.parse(packageFile);
 
     const dependencies = {
@@ -102,13 +75,11 @@ export async function getProjectInfo(projectPath: string) {
     let routes: Routes = {
         routes: [""],
         apiRoutes: [""]
-    };
+    } as const;
 
     if (framework === "Next.js") {
         routes = await getNextRoutes(path.join(projectPath, "src", "app"));
-    };
-
-    if ("react-router-dom" in dependencies) {
+    } else if ("react-router-dom" in dependencies) {
         routes = await getReactRoutes(path.join(projectPath, "src"));
     }
 

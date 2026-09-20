@@ -1,12 +1,11 @@
 # Dreel-academy
 
 
-The training academy for Dreel company.
 
 
 ## 🌐 Live Demo
 
-https://dreelacademy.vercel.app
+undefined
 
 
 ## 🚀 Tech Stack
@@ -29,7 +28,7 @@ https://dreelacademy.vercel.app
 
 
 ## 🛠️ Scripts
-    
+
 - `dev`: `vite`
 - `build`: `vite build`
 - `lint`: `eslint .`

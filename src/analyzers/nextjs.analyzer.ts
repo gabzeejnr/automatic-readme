@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "node:path";
 import { pageExtensions, ignoredFF } from "../arrays/project.arrays.js";
-import type { Routes } from "../project.js";
+import type { Routes } from "../types/project.types.js";
 
 export async function getNextRoutes(
     currentPath: string,
