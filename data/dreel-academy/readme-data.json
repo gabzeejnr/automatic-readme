@@ -1,5 +1,7 @@
 {
     "name": "dreel-academy",
+    "description": "The training academy for Dreel company.",
+    "url": "https://dreelacademy.vercel.app",
     "framework": "Unknown",
     "techStack": [
         "React",
