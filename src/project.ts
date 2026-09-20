@@ -3,8 +3,9 @@ import path from "path";
 import { possibleStacks, ignoredFF } from "./arrays/project.arrays.js";
 import { getNextRoutes } from "./analyzers/Nextjs.analyzer.js";
 import type { Dirent } from "fs";
+import { getReactRoutes } from "./analyzers/react.analyzer.js";
 
-function folderFileSort(array: Dirent[], folderArray: string[], fileArray: string[]) {
+export function folderFileSort(array: Dirent[], folderArray: string[], fileArray: string[]) {
 
     array.forEach(arr => {
         if (ignoredFF.includes(arr.name)) return;
@@ -58,18 +59,17 @@ async function projectStructure(projectPath: string) {
         src: {
             folders: srcFolders,
             files: srcFiles
-        },
-        /* app: {
-            folders: appFolders,
-            files: appFiles
-        } */
+        }
     }
 }
 
 export async function getProjectInfo(projectPath: string) {
     const packagePath = `${projectPath}/package.json`;
 
-    const { root: { folders, files } } = await projectStructure(projectPath);
+    const {
+        root: { folders, files },
+        src
+    } = await projectStructure(projectPath);
 
     const packageFile = await fs.readFile(packagePath, "utf-8");
 
@@ -98,7 +98,11 @@ export async function getProjectInfo(projectPath: string) {
     };
 
     if (framework === "Next.js") {
-        routes = await getNextRoutes(path.join(projectPath, "src", "app"), "", framework);
+        routes = await getNextRoutes(path.join(projectPath, "src", "app"));
+    };
+
+    if ("react-router-dom" in dependencies) {
+        routes = await getReactRoutes(path.join(projectPath, "src"));
     }
 
     return {

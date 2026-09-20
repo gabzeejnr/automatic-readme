@@ -5,8 +5,7 @@ import type { Routes } from "../project.js";
 
 export async function getNextRoutes(
     currentPath: string,
-    routePath = "",
-    framework?: string
+    routePath = ""
 ): Promise<Routes> {
 
     const routes: string[] = [];

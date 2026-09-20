@@ -46,3 +46,5 @@ export const possibleStacks: TechStack[] = [
 ];
 
 export const pageExtensions: string[] = [".tsx", ".jsx", ".ts", ".js"];
+
+export const routeLocations: string[] = ["route", "routes", "router"];
