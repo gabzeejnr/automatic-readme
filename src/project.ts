@@ -1,8 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
-import {
-    possibleStacks, ignoredFF, pageExtensions,
-} from "./arrays/project.arrays.js";
+import { possibleStacks, ignoredFF } from "./arrays/project.arrays.js";
+import { getNextRoutes } from "./analyzers/Nextjs.analyzer.js";
 import type { Dirent } from "fs";
 
 function folderFileSort(array: Dirent[], folderArray: string[], fileArray: string[]) {
@@ -20,48 +19,9 @@ function folderFileSort(array: Dirent[], folderArray: string[], fileArray: strin
     return { folderArray, fileArray }
 }
 
-type Routes = {
+export type Routes = {
     routes: string[],
     apiRoutes: string[]
-}
-
-async function getPageRoutes(
-    currentPath: string,
-    routePath = ""
-): Promise<Routes> {
-
-    const routes: string[] = [];
-    const apiRoutes: string[] = []
-
-    const entries = await fs.readdir(currentPath, { withFileTypes: true });
-
-    for (const entry of entries) {
-
-        const isPage = entry.name.startsWith("page.") && pageExtensions.includes(path.extname(entry.name));
-        const isApi = entry.name.startsWith("route.") && pageExtensions.includes(path.extname(entry.name));
-
-        if (!entry.isDirectory() && isPage) {
-            const route = routePath || "/";
-            routes.push(route);
-        } else if (!entry.isDirectory() && isApi) {
-            apiRoutes.push(routePath);
-        } else if (entry.isDirectory() && !entry.name.startsWith(".") && !ignoredFF.includes(entry.name)) {
-            const childPath = path.join(currentPath, entry.name);
-
-            const childRoutes = await getPageRoutes(childPath, `${routePath}/${entry.name}`);
-            routes.push(...childRoutes.routes);
-            apiRoutes.push(...childRoutes.apiRoutes);
-        }
-
-    }
-
-    routes.sort((a, b) => a.localeCompare(b))
-    apiRoutes.sort((a, b) => a.localeCompare(b));
-
-    return {
-        routes,
-        apiRoutes
-    }
 }
 
 async function projectStructure(projectPath: string) {
@@ -70,11 +30,11 @@ async function projectStructure(projectPath: string) {
     const srcPath = path.join(projectPath, "src");
     const srcDocs = await fs.readdir(srcPath, { withFileTypes: true });
 
-    const appPath = path.join(projectPath, "src", "app");
-    const appDocs = await fs.readdir(appPath, { withFileTypes: true });
+    // const appPath = path.join(projectPath, "src", "app");
+    // const appDocs = await fs.readdir(appPath, { withFileTypes: true });
 
-    const productsPath = path.join(projectPath, "src", "app", "products");
-    const productsDocs = await fs.readdir(productsPath, { withFileTypes: true });
+    // const productsPath = path.join(projectPath, "src", "app", "products");
+    // const productsDocs = await fs.readdir(productsPath, { withFileTypes: true });
 
     const folders: string[] = [];
     const files: string[] = [];
@@ -82,13 +42,13 @@ async function projectStructure(projectPath: string) {
     const srcFolders: string[] = [];
     const srcFiles: string[] = [];
 
-    const appFolders: string[] = [];
-    const appFiles: string[] = [];
+    // const appFolders: string[] = [];
+    // const appFiles: string[] = [];
 
 
     folderFileSort(docs, folders, files);
     folderFileSort(srcDocs, srcFolders, srcFiles);
-    folderFileSort(appDocs, appFolders, appFiles);
+    // folderFileSort(appDocs, appFolders, appFiles);
 
     return {
         root: {
@@ -99,20 +59,17 @@ async function projectStructure(projectPath: string) {
             folders: srcFolders,
             files: srcFiles
         },
-        app: {
+        /* app: {
             folders: appFolders,
             files: appFiles
-        }
+        } */
     }
 }
 
 export async function getProjectInfo(projectPath: string) {
     const packagePath = `${projectPath}/package.json`;
 
-    const {
-        root: { folders, files },
-        src, app
-    } = await projectStructure(projectPath);
+    const { root: { folders, files } } = await projectStructure(projectPath);
 
     const packageFile = await fs.readFile(packagePath, "utf-8");
 
@@ -141,7 +98,7 @@ export async function getProjectInfo(projectPath: string) {
     };
 
     if (framework === "Next.js") {
-        routes = await getPageRoutes(path.join(projectPath, "src", "app"));
+        routes = await getNextRoutes(path.join(projectPath, "src", "app"), "", framework);
     }
 
     return {

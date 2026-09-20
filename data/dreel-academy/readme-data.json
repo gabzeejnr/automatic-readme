@@ -1,0 +1,22 @@
+{
+    "name": "dreel-academy",
+    "description": "The training academy for Dreel company.",
+    "url": "https://dreelacademy.vercel.app",
+    "framework": "Unknown",
+    "techStack": [
+        "React",
+        "Tailwind CSS"
+    ],
+    "routes": [
+        ""
+    ],
+    "apiRoutes": [
+        ""
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    }
+}
