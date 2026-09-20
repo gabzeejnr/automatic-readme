@@ -5,6 +5,7 @@ import { getNextRoutes } from "./analyzers/nextjs.analyzer.js";
 import { getReactRoutes } from "./analyzers/react.analyzer.js";
 import { folderFileSort } from "./helpers/project.helpers.js";
 import type { Routes } from "./types/project.types.js";
+import { getVueRoutes } from "./analyzers/vue.analyzer.js";
 
 async function projectStructure(projectPath: string) {
     const docs = await fs.readdir(projectPath, { withFileTypes: true });
@@ -81,6 +82,8 @@ export async function getProjectInfo(projectPath: string) {
         routes = await getNextRoutes(path.join(projectPath, "src", "app"));
     } else if ("react-router-dom" in dependencies) {
         routes = await getReactRoutes(path.join(projectPath, "src"));
+    } else if ("vue-router" in dependencies) {
+        routes = await getVueRoutes(path.join(projectPath, "src"))
     }
 
     return {

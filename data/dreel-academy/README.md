@@ -1,11 +1,11 @@
 # Dreel-academy
 
-
+The training academy for Dreel company.
 
 
 ## 🌐 Live Demo
 
-undefined
+https://dreelacademy.vercel.app
 
 
 ## 🚀 Tech Stack
