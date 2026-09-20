@@ -15,7 +15,7 @@ if (!url || !projectPath) {
     process.exit(1);
 }
 
-// const website = await scrapeWebsite(url);
+const website = await scrapeWebsite(url);
 const project = await getProjectInfo(projectPath);
 
 const projectFolder = path.join(dataFolder, project.name);
@@ -26,8 +26,8 @@ const { routes, apiRoutes } = project.routes
 
 const readmeData: ReadmeData = {
     name: project.name,
-    // description: website.description,
-    // url: website.url,
+    description: website.description,
+    url: website.url,
     framework: project.framework,
     techStack: project.techStack,
     routes,
@@ -43,9 +43,9 @@ await fs.writeFile(path.join(projectFolder, "README.md"), readme, "utf-8");
 
 console.log("Readme written...");
 
-// await fs.writeFile(path.join(projectFolder, "website.json"),
-//     JSON.stringify(website, null, 4)
-// )
+await fs.writeFile(path.join(projectFolder, "website.json"),
+    JSON.stringify(website, null, 4)
+)
 
 console.log("Website data saved");
 console.log("End....")
