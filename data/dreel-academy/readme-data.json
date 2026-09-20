@@ -11,9 +11,7 @@
         "/dcnsp",
         "/suse-partnership"
     ],
-    "apiRoutes": [
-        ""
-    ],
+    "apiRoutes": [],
     "scripts": {
         "dev": "vite",
         "build": "vite build",

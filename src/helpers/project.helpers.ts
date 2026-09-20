@@ -1,14 +1,8 @@
 import { ignoredFF } from "../arrays/project.arrays.js";
 import type { Dirent } from "fs";
+import type { FolderFileSort } from "../types/helpers.types.js";
 
-export function folderFileSort(
-    array: Dirent[],
-    folderArray: string[],
-    fileArray: string[]
-): {
-    folderArray: string[],
-    fileArray: string[]
-} {
+export function folderFileSort(array: Dirent[], folderArray: string[], fileArray: string[]): FolderFileSort {
 
     /* 
     *This function checks the file & folder array and sorts them into files and folders

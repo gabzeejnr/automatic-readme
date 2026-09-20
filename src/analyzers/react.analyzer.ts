@@ -8,6 +8,9 @@ export async function getReactRoutes(
     srcPath: string
 ): Promise<Routes> {
 
+    const routes: string[] = [];
+    const apiRoutes: string[] = []
+
     const docs = await fs.readdir(srcPath, { withFileTypes: true });
 
     const folders: string[] = [];
@@ -20,7 +23,6 @@ export async function getReactRoutes(
     const folderPath = path.join(srcPath, routeFolder);
     const content = await fs.readdir(folderPath, { withFileTypes: true });
 
-    const routes: string[] = [];
     let parentRoute: string = "";
 
     for (const con of content) {
@@ -60,6 +62,6 @@ export async function getReactRoutes(
 
     return {
         routes,
-        apiRoutes: [""]
+        apiRoutes
     }
 }

@@ -24,7 +24,6 @@ undefined
 
 ## 🔌 API Routes
 
-- ``
 
 
 ## 🛠️ Scripts
