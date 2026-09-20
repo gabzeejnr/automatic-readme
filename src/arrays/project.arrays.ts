@@ -1,4 +1,4 @@
-import type { TechStack } from "../types/stack.types.js";
+import type { TechStack } from "../types/project.types.js";
 
 export const ignoredFF: string[] = [
     ".env",

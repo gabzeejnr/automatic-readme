@@ -36,7 +36,7 @@ const readmeData: ReadmeData = {
 }
 
 const readme = generateReadMe(readmeData);
-console.log(readme);
+// console.log(readme);
 
 await fs.writeFile(path.join(projectFolder, "readme-data.json"), JSON.stringify(readmeData, null, 4))
 await fs.writeFile(path.join(projectFolder, "README.md"), readme, "utf-8");

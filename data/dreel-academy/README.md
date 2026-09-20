@@ -1,5 +1,4 @@
-# dreel-academy
-
+# Dreel-academy
 
 
 
@@ -17,16 +16,18 @@ undefined
 
 ## 📍 Routes
 
-- ``
+- `/`
+- `/home`
+- `/dcnsp`
+- `/suse-partnership`
 
 
 ## 🔌 API Routes
 
-- ``
 
 
 ## 🛠️ Scripts
-    
+
 - `dev`: `vite`
 - `build`: `vite build`
 - `lint`: `eslint .`
