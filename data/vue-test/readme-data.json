@@ -1,0 +1,21 @@
+{
+    "name": "vue-test",
+    "description": "",
+    "url": "https://example.com",
+    "framework": "Vue.js",
+    "techStack": [
+        "Vue.js"
+    ],
+    "routes": [
+        "/",
+        "/crew",
+        "/destination",
+        "/technology"
+    ],
+    "apiRoutes": [],
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    }
+}
