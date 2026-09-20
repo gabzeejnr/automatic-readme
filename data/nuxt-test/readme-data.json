@@ -1,0 +1,46 @@
+{
+    "name": "nuxt-test",
+    "description": "",
+    "url": "https://example.com",
+    "authors": [
+        {
+            "name": "Gabriel Dodowei",
+            "github": "https://github.com/gabzeejnr"
+        }
+    ],
+    "framework": "Nuxt.js",
+    "techStack": [
+        "Vue.js",
+        "Nuxt.js"
+    ],
+    "routes": [
+        "/",
+        "/authors"
+    ],
+    "apiRoutes": [
+        "DELETE /api/authors/[id]",
+        "DELETE /api/books/[id]",
+        "GET /api/authors",
+        "GET /api/books",
+        "POST /api/authors/create",
+        "POST /api/books/create",
+        "PUT /api/authors/[id]",
+        "PUT /api/books/[id]"
+    ],
+    "apiReference": [
+        {
+            "parameter": "id",
+            "type": "string",
+            "description": "Id of item to fetch",
+            "required": true
+        }
+    ],
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "dev:clean": "rm -rf node_modules package-lock.json && npm i --force && nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    }
+}

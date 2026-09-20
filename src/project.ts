@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { possibleStacks } from "./arrays/project.arrays.js";
-import { getNextRoutes } from "./analyzers/nextjs.analyzer.js";
+import { getPageRoutes } from "./analyzers/nextjs.analyzer.js";
 import { getReactRoutes } from "./analyzers/react.analyzer.js";
 import { folderFileSort } from "./helpers/project.helpers.js";
 import type { Routes } from "./types/project.types.js";
@@ -10,8 +10,8 @@ import { getVueRoutes } from "./analyzers/vue.analyzer.js";
 async function projectStructure(projectPath: string) {
     const docs = await fs.readdir(projectPath, { withFileTypes: true });
 
-    const srcPath = path.join(projectPath, "src");
-    const srcDocs = await fs.readdir(srcPath, { withFileTypes: true });
+    // const srcPath = path.join(projectPath, "src");
+    // const srcDocs = await fs.readdir(srcPath, { withFileTypes: true });
 
     // const appPath = path.join(projectPath, "src", "app");
     // const appDocs = await fs.readdir(appPath, { withFileTypes: true });
@@ -30,7 +30,7 @@ async function projectStructure(projectPath: string) {
 
 
     folderFileSort(docs, folders, files);
-    folderFileSort(srcDocs, srcFolders, srcFiles);
+    // folderFileSort(srcDocs, srcFolders, srcFiles);
     // folderFileSort(appDocs, appFolders, appFiles);
 
     return {
@@ -48,10 +48,7 @@ async function projectStructure(projectPath: string) {
 export async function getProjectInfo(projectPath: string) {
     const packagePath = `${projectPath}/package.json`;
 
-    const {
-        root: { folders, files },
-        src
-    } = await projectStructure(projectPath);
+    const { root: { folders, files } } = await projectStructure(projectPath);
 
     const packageFile = await fs.readFile(packagePath, "utf-8");
     const packageJson = JSON.parse(packageFile);
@@ -60,6 +57,7 @@ export async function getProjectInfo(projectPath: string) {
         ...packageJson.dependencies,
         ...packageJson.devDependencies
     };
+    console.log(dependencies)
 
     const techStack: string[] = [];
 
@@ -79,9 +77,11 @@ export async function getProjectInfo(projectPath: string) {
     } as const;
 
     if (framework === "Next.js") {
-        routes = await getNextRoutes(path.join(projectPath, "src", "app"));
+        routes = await getPageRoutes(path.join(projectPath, "src", "app"), "", framework);
     } else if ("react-router-dom" in dependencies) {
         routes = await getReactRoutes(path.join(projectPath, "src"));
+    } else if ("nuxt" in dependencies) {
+        routes = await getPageRoutes(projectPath, "", framework)
     } else if ("vue-router" in dependencies) {
         routes = await getVueRoutes(path.join(projectPath, "src"))
     }

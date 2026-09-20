@@ -1,10 +1,12 @@
 import fs from "fs/promises";
 import path from "path";
+import PromptSync from "prompt-sync";
 import { scrapeWebsite } from "./scraper.js";
 import { getProjectInfo } from "./project.js";
 import type { ReadmeData } from "./types/readme.types.js";
 import { generateReadMe } from "./readme.js";
 
+const prompt = PromptSync({ sigint: true })
 const dataFolder = "./data";
 const url = process.argv[2];
 const projectPath = process.argv[3];
@@ -18,20 +20,40 @@ if (!url || !projectPath) {
 const website = await scrapeWebsite(url);
 const project = await getProjectInfo(projectPath);
 
-const projectFolder = path.join(dataFolder, project.name);
+let projectName = project.name;
+
+if (!projectName) {
+    projectName = prompt('Enter project name: ')
+}
+
+const projectFolder = path.join(dataFolder, projectName);
 
 await fs.mkdir(projectFolder, { recursive: true });
 
 const { routes, apiRoutes } = project.routes
 
 const readmeData: ReadmeData = {
-    name: project.name,
+    name: projectName,
     description: website.description,
     url: website.url,
+    authors: [
+        {
+            name: "Gabriel Dodowei",
+            github: "https://github.com/gabzeejnr"
+        }
+    ],
     framework: project.framework,
     techStack: project.techStack,
     routes,
     apiRoutes,
+    apiReference: [
+        {
+            parameter: "id",
+            type: "string",
+            description: "Id of item to fetch",
+            required: true
+        }
+    ],
     scripts: project.scripts
 }
 

@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
+import { chromium } from "playwright";
 import type { Website } from "./types/website.types.js";
-import { chromium } from "playwright"
 
 export async function scrapeWebsite(url: string) {
 
